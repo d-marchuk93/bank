@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Symfony!</title>
+</head>
+<body>
+    <style>
+        td {
+            padding: 10px;
+        }
+    </style>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>date</th>
+                <th>sum</th>
+                <th>status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for date, period in calculation %}
+                <tr>
+                    <td>{{ date }}</td>
+                    <td>{{ period['sum'] }}</td>
+                    {% if period['status'] == 'profit' %}
+                        <td style="color:green;">{{ period['status'] }}</td>
+                    {% else %}
+                        <td style="color:red;">{{ period['status'] }}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+    {% if clientInfo['one_group'] is defined %}
+        Средний депозит возрастной группы 18-25 лет равен <b>{{ clientInfo['one_group'] }}</b>
+    {% else %}
+        Нет клиентов возрастной группы 18-25 лет
+    {% endif %}
+    <br />
+    {% if clientInfo['two_group'] is defined %}
+        Средний депозит возрастной группы 25-50 лет равен <b>{{ clientInfo['two_group'] }}</b>
+    {% else %}
+        Нет клиентов возрастной группы 25-50 лет
+    {% endif %}
+    <br />
+    {% if clientInfo['three_group'] is defined %}
+        Средний депозит возрастной группы от 50 лет равен <b>{{ clientInfo['three_group'] }}</b>
+    {% else %}
+        Нет клиентов возрастной группы от 50 лет
+    {% endif %}
+</body>
+</html>
